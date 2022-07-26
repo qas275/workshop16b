@@ -1,0 +1,68 @@
+POST http://localhost:8080/board-game HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Mastermind",
+    "pieces": {
+        "decoding_board": {
+            "total_count": 1
+        },
+        "pegs": {
+            "total_count": 102,
+            "types": [
+                {
+                    "type": "code",
+                    "count": 72
+                },
+                {
+                    "type": "key",
+                    "count": 30
+                }
+            ]
+        },
+        "rulebook": {
+            "total_count": 1,
+            "file": "rulebook-ultimate-mastermind.pdf"
+        }
+    }
+}
+
+###
+GET http://localhost:8080/board-game/d4d4e2b1 HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:8080/board-game/d4d4e2b1 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Mastermind",
+  "pieces": {
+    "decodingBoard": null,
+    "pegs": {
+      "totalCount": 0,
+      "types": [
+        {
+          "type": "code",
+          "count": 74
+        },
+        {
+          "type": "key",
+          "count": 31
+        }
+      ]
+    },
+    "rulebook": {
+      "totalCount": 0,
+      "file": "rulebook-ultimate-mastermind.pdf"
+    }
+  },
+  "id": "d4d4e2b1",
+  "insertCount": 0,
+  "upsert": false
+}
+
+###
+
+GET http://localhost:8080/board-game/d4d4e2b1 HTTP/1.1
+content-type: application/json

@@ -1,5 +1,15 @@
 ## Workshop 16
 
+Run Spring boot app
+
+```
+mvn spring-boot:run
+```
+
+```
+redis-cli -u redis://<username>:<password>@<public endpoint>
+```
+
 ```
 {
     "name": "Mastermind",

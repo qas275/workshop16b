@@ -18,17 +18,17 @@ public class DecodingBoard implements Serializable {
         this.totalCount = value;
     }
 
-    public JsonObject toJson() {
-        return Json.createObjectBuilder()
-                .add("totalCount", totalCount)
-                .build();
-    }
+    // public JsonObject toJson() {
+    // return Json.createObjectBuilder()
+    // .add("totalCount", totalCount)
+    // .build();
+    // }
 
-    public static DecodingBoard create(String rec) {
-        JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
-        JsonObject o = r.readObject();
-        DecodingBoard d = new DecodingBoard();
-        d.setTotalCount(o.getInt("totalCount"));
-        return d;
-    }
+    // public static DecodingBoard create(String rec) {
+    // JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
+    // JsonObject o = r.readObject();
+    // DecodingBoard d = new DecodingBoard();
+    // d.setTotalCount(o.getInt("totalCount"));
+    // return d;
+    // }
 }

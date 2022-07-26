@@ -26,20 +26,20 @@ public class Rulebook {
         this.file = value;
     }
 
-    public JsonObject toJson() {
-        return Json.createObjectBuilder()
-                .add("totalCount", totalCount)
-                .add("file", file)
-                .build();
-    }
+    // public JsonObject toJson() {
+    // return Json.createObjectBuilder()
+    // .add("totalCount", totalCount)
+    // .add("file", file)
+    // .build();
+    // }
 
-    public static Rulebook create(String rec) {
-        JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
-        JsonObject o = r.readObject();
-        Rulebook rb = new Rulebook();
-        rb.setTotalCount(o.getInt("totalCount"));
-        rb.setFile(o.getString("file"));
-        return rb;
-    }
+    // public static Rulebook create(String rec) {
+    // JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
+    // JsonObject o = r.readObject();
+    // Rulebook rb = new Rulebook();
+    // rb.setTotalCount(o.getInt("totalCount"));
+    // rb.setFile(o.getString("file"));
+    // return rb;
+    // }
 
 }

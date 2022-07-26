@@ -28,26 +28,29 @@ public class Pegs {
         this.types = value;
     }
 
-    public JsonObject toJson() {
-        JsonArrayBuilder typeArrBuilder = Json.createArrayBuilder();
-        for (Type t : types) {
-            typeArrBuilder.add(t.toJson());
-        }
-        return Json.createObjectBuilder()
-                .add("types", typeArrBuilder)
-                .add("totalCount", totalCount)
-                .build();
-    }
+    // public JsonObject toJson() {
+    // JsonArrayBuilder typeArrBuilder = Json.createArrayBuilder();
+    // if (types != null) {
+    // for (Type t : types) {
+    // typeArrBuilder.add(t.toJson());
+    // }
+    // }
 
-    public static Pegs create(String rec) {
-        JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
-        JsonObject o = r.readObject();
-        Pegs pg = new Pegs();
-        JsonArray jsonArr = o.getJsonArray("types");
-        Type[] arrT = jsonArr.toArray(new Type[jsonArr.size()]);
-        pg.setTypes(arrT);
-        pg.setTotalCount(o.getInt("totalCount"));
+    // return Json.createObjectBuilder()
+    // .add("types", typeArrBuilder)
+    // .add("totalCount", totalCount)
+    // .build();
+    // }
 
-        return pg;
-    }
+    // public static Pegs create(String rec) {
+    // JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
+    // JsonObject o = r.readObject();
+    // Pegs pg = new Pegs();
+    // JsonArray jsonArr = o.getJsonArray("types");
+    // Type[] arrT = jsonArr.toArray(new Type[jsonArr.size()]);
+    // pg.setTypes(arrT);
+    // pg.setTotalCount(o.getInt("totalCount"));
+
+    // return pg;
+    // }
 }

@@ -36,21 +36,24 @@ public class Pieces implements Serializable {
         this.rulebook = value;
     }
 
-    public JsonObject toJson() {
-        return Json.createObjectBuilder()
-                .add("decodingBoard", decodingBoard.toJson())
-                .add("pegs", pegs.toJson())
-                .add("rulebook", rulebook.toJson())
-                .build();
-    }
+    // public JsonObject toJson() {
+    // DecodingBoard d = new DecodingBoard();
+    // Pegs p = new Pegs();
+    // Rulebook r = new Rulebook();
+    // return Json.createObjectBuilder()
+    // .add("decodingBoard", d.toJson())
+    // .add("pegs", p.toJson())
+    // .add("rulebook", r.toJson())
+    // .build();
+    // }
 
-    public static Pieces create(String rec) {
-        JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
-        JsonObject o = r.readObject();
-        Pieces pc = new Pieces();
-        pc.setDecodingBoard(DecodingBoard.create(o.getJsonObject("decodingBoard").toString()));
-        pc.setPegs(Pegs.create(o.getJsonObject("pegs").toString()));
-        pc.setRulebook(Rulebook.create(o.getJsonObject("rulebook").toString()));
-        return pc;
-    }
+    // public static Pieces create(String rec) {
+    // JsonReader r = Json.createReader(new ByteArrayInputStream(rec.getBytes()));
+    // JsonObject o = r.readObject();
+    // Pieces pc = new Pieces();
+    // pc.setDecodingBoard(DecodingBoard.create(o.getJsonObject("decodingBoard").toString()));
+    // pc.setPegs(Pegs.create(o.getJsonObject("pegs").toString()));
+    // pc.setRulebook(Rulebook.create(o.getJsonObject("rulebook").toString()));
+    // return pc;
+    // }
 }
