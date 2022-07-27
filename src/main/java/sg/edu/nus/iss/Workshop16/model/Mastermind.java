@@ -71,11 +71,4 @@ public class Mastermind implements Serializable {
     public void setPieces(Pieces value) {
         this.pieces = value;
     }
-
-    // public JsonObject toJson() {
-    // return Json.createObjectBuilder()
-    // .add("name", name)
-    // .add("pieces", pieces.toJson())
-    // .build();
-    // }
 }
