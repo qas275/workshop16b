@@ -1,11 +1,15 @@
 package sg.edu.nus.iss.Workshop16.service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +23,14 @@ public class BoardGameRedis implements BoardGameRepo {
     @Qualifier("games")
     RedisTemplate<String, Mastermind> redisTemplate;
 
+    List<String> boardAll;
+
     @Override
     public int save(final Mastermind ctc) {
         logger.info("Save mastermind > " + logger);
         redisTemplate.opsForValue().set(ctc.getId(), ctc);
         Mastermind result = (Mastermind) redisTemplate.opsForValue().get(ctc.getId());
+        boardAll.add(ctc.getId());
         if (result != null)
             return 1;
         return 0;
@@ -39,8 +46,11 @@ public class BoardGameRedis implements BoardGameRepo {
     @Override
     public int update(final Mastermind ctc) {
         logger.info("Save mastermind > " + logger);
-        if (ctc.isUpsert())
+        if (ctc.isUpsert()){
             redisTemplate.opsForValue().setIfAbsent(ctc.getId(), ctc);
+            boardAll.add(ctc.getId());
+        }
+            
         else
             redisTemplate.opsForValue().setIfPresent(ctc.getId(), ctc);
         Mastermind result = (Mastermind) redisTemplate.opsForValue().get(ctc.getId());
@@ -52,5 +62,14 @@ public class BoardGameRedis implements BoardGameRepo {
     public Set<String> searchKeys(String index) {
         String pattern = "*%s*".formatted(index);
         return redisTemplate.keys(pattern);
+    }
+
+    public List<String> getList() {
+        List<Mastermind> mastermindList =  redisTemplate.opsForList().range("boardAll", 0, boardAll.size());
+        List<String> mastermindStringList = new LinkedList<>();
+        for (Mastermind mastermind:mastermindList){
+            mastermindStringList.add(mastermind.getId()); 
+        }
+        return mastermindStringList;
     }
 }
