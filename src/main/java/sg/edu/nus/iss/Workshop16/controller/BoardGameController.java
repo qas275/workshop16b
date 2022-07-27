@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
+import org.apache.catalina.connector.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,5 +50,11 @@ public class BoardGameController {
         if (mResult > 0)
             ms.setUpdateCount(mResult);
         return ResponseEntity.ok(ms);
+    }
+
+    @GetMapping(path="/allKeys")
+    public ResponseEntity<List> returnKeysList(){
+        List<String> respKeys = service.getList();
+        return ResponseEntity.ok(respKeys); // {[]}
     }
 }
